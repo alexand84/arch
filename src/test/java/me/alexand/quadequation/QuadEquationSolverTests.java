@@ -26,10 +26,10 @@ public class QuadEquationSolverTests {
 
     @Test
     void shouldHaveOneRoot() {
-        double a = 1.0, b = 2.0, c = 1.0;
+        double a = 1, b = 1.0000001, c = 0.25;
         double[] roots = solver.solve(a, b, c);
         assertThat(roots).hasSize(1)
-                .contains(-1.0);
+                .contains(-0.50000005);
     }
 
     @Test

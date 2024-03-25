@@ -17,14 +17,14 @@ public class QuadEquationSolverImpl implements QuadEquationSolver {
         checkArgs(a, b, c);
         double d = b * b - 4 * a * c;
 
-        if (d < 0) {
+        if (d < -eps) {
             return new double[]{};
-        } else if (d > 0) {
+        } else if (d > eps) {
             double sqrt = Math.sqrt(d);
             return new double[]{(-b - sqrt) / 2 * a, (-b + sqrt) / 2 * a};
         }
 
-        return new double[]{-b / 2 * a};
+        return new double[]{-b / (2 * a)};
     }
 
     private void checkArgs(double a, double b, double c) {
