@@ -16,7 +16,7 @@ public class QuadEquationSolverImpl implements QuadEquationSolver {
             return roots;
         }
 
-        throw new UnsupportedOperationException();
+        return new double[]{-b / 2 * a};
     }
 
 }
