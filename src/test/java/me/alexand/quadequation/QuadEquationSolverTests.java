@@ -34,8 +34,31 @@ public class QuadEquationSolverTests {
 
     @Test
     void shouldFailDueToAEqZero() {
-        double a = 0, b = 1.0, c = 1.0;
-        assertThatThrownBy(() -> solver.solve(a, b, c))
+        assertThatThrownBy(() -> solver.solve(0, 1.0, 1.0))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> solver.solve(1e-7, 1.0, 1.0))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void shouldFailDueToArgumentsNotNumbers() {
+        assertThatThrownBy(() -> solver.solve(Double.NaN, 1.0, 1.0))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> solver.solve(Double.POSITIVE_INFINITY, 1.0, 1.0))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> solver.solve(Double.NEGATIVE_INFINITY, 1.0, 1.0))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> solver.solve(1.0, Double.NaN, 1.0))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> solver.solve(1.0, Double.POSITIVE_INFINITY, 1.0))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> solver.solve(1.0, Double.NEGATIVE_INFINITY, 1.0))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> solver.solve(1.0, 1.0, Double.NaN))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> solver.solve(1.0, 1.0, Double.POSITIVE_INFINITY))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> solver.solve(1.0, 1.0, Double.NEGATIVE_INFINITY))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
