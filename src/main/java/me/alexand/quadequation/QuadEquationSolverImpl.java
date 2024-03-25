@@ -4,6 +4,9 @@ public class QuadEquationSolverImpl implements QuadEquationSolver {
 
     @Override
     public double[] solve(double a, double b, double c) {
+        if (a == 0) {
+            throw new IllegalArgumentException();
+        }
         double d = b * b - 4 * a * c;
 
         if (d < 0) {

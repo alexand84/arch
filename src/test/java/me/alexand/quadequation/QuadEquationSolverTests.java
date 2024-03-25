@@ -3,6 +3,7 @@ package me.alexand.quadequation;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class QuadEquationSolverTests {
 
@@ -30,4 +31,12 @@ public class QuadEquationSolverTests {
         assertThat(roots).hasSize(1)
                 .contains(-1.0);
     }
+
+    @Test
+    void shouldFailDueToAEqZero() {
+        double a = 0, b = 1.0, c = 1.0;
+        assertThatThrownBy(() -> solver.solve(a, b, c))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
